@@ -1,0 +1,45 @@
+<div id="main">
+    <div class="header">
+        <h1>Pages</h1>
+        <h2>Check the pages got from tasks.</h2>
+    </div>
+
+    <div class="content">
+        <table class="pure-table pure-table-striped">
+            <thead>
+            <tr>
+                <th>
+                    ID
+                </th>
+                <th>
+                    URL
+                </th>
+                <th>
+                    Level
+                </th>
+                <th>
+                    Title
+                </th>
+                <th>
+                    Task ID
+                </th>
+            </tr>
+            </thead>
+            <tbody>
+
+            {{range $d := .pages}}
+                <tr>
+                    <td>{{.ID}}</td>
+                    <td><a href="{{.Url}}">{{printf "%.50s" .Url}}...</a></td>
+                    <td>{{.Level}}</td>
+                    <td>{{.Title}}</td>
+                    <td>
+                        {{.TaskID}}
+                    </td>
+                </tr>
+            {{end}}
+            </tbody>
+        </table>
+
+    </div>
+</div>

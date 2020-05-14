@@ -1,0 +1,53 @@
+<div id="main">
+    <div class="header">
+        <h1>Tasks</h1>
+        <h2>Check the tasks.</h2>
+    </div>
+
+    <div class="content">
+        <table class="pure-table pure-table-striped">
+            <thead>
+            <tr>
+                <th>
+                    ID
+                </th>
+                <th>
+                    Initial URL
+                </th>
+                <th>
+                    Depth
+                </th>
+                <th>
+                    Initial Level
+                </th>
+                <th>
+                    Status
+                </th>
+                <th>
+                    Keywords
+                </th>
+                <th>
+                    Max Processes
+                </th>
+            </tr>
+            </thead>
+            <tbody>
+
+            {{range $d := .tasks}}
+                <tr>
+                    <td><a href="/task?id={{.ID}}">{{.ID}}</a></td>
+                    <td>{{.InitUrl}}</td>
+                    <td>{{.DepthLimit}}</td>
+                    <td>
+                        {{.Level}}
+                    </td>
+                    <td>{{.Status}}</td>
+                    <td>{{.KeyWords}}</td>
+                    <td>{{.MaxProcesses}}</td>
+                </tr>
+            {{end}}
+            </tbody>
+        </table>
+
+    </div>
+</div>

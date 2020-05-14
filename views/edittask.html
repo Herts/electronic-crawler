@@ -1,0 +1,56 @@
+<div id="main">
+    <div class="header">
+        <h1>{{if .edit}}Edit{{else}}Add{{end}} Task
+        </h1>
+    </div>
+
+    <div class="content">
+        <div class="content">
+            <form id="taskEditForm" class="pure-form pure-form-stacked">
+                <fieldset class="pure-group">
+                    <label for="initUrl">Initial URL</label>
+                    <input class="pure-input-1-2" id="initUrl" name="initUrl" required value="{{.task.initUrl}}">
+
+                    <label for="depthLimit">Depth Limit</label>
+                    <input class="pure-input-1-2" id="depthLimit" name="depthLimit" type="number" min="0" required
+                           value="{{.task.depthLimit}}">
+                    <label for="level">Level</label>
+                    <input id="level" name="level" type="number" min="0" required value="{{.task.level}}">
+                    <label for="maxProcesses">Max Processes</label>
+                    <input id="maxProcesses" name="maxProcesses" type="number" min="1" required
+                           value="{{.task.maxProcesses}}">
+                    <label for="keyWords">Key Words</label>
+                    <input class="pure-input-1" id="keyWords" name="keyWords" required value="{{.task.keyWords}}">
+
+                </fieldset>
+                <button id="taskEditFormSubmit" type="button"
+                        class="pure-button pure-button-primary">{{if .edit}}Edit{{else}}Add{{end}} Task
+                </button>
+
+            </form>
+        </div>
+    </div>
+</div>
+
+
+<script>
+    $(document).ready(function () {
+        // click on button submit
+        $("#taskEditFormSubmit").on('click', function () {
+            // send ajax
+            $.ajax({
+                url: '/api/task/add', // url where to submit the request
+                type: "POST", // type of action POST || GET
+                dataType: 'json', // data type
+                data: $("#taskEditForm").serializeJSON(), // post data || get data
+                contentType: 'application/json;charset=UTF-8',
+                success: function (result) {
+                    $('#taskEditFormSubmit').html(result.message);
+                },
+                error: function (xhr, resp, text) {
+                    console.log(xhr, resp, text);
+                }
+            })
+        })
+    });
+</script>
